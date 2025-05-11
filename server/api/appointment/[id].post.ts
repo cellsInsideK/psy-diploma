@@ -1,3 +1,4 @@
+import { eq } from "drizzle-orm";
 import { db } from "~/server/database/db";
 import { appointments } from "~/server/database/schema";
 
@@ -7,6 +8,22 @@ export default defineEventHandler(async (event) => {
   const parsedDateTime = new Date(body.date)
 
   try {
+    const app = await db.select().from(appointments).where(eq(appointments.doctorId, id));
+    let same = false;
+
+    app.forEach((val) => {
+      if (val.date === parsedDateTime && val.time === body.time) {
+        return same = true
+      }
+    })
+
+    if (same) {
+        return {
+        statusCode: 500,
+        message: 'Запись с такой датой и временем уже существует'
+      }
+    }
+
     const res = await db.insert(appointments).values({
       userId: body.userId,
       doctorId: id,
