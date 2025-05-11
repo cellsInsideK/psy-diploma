@@ -4,9 +4,24 @@
   import Autoplay from 'embla-carousel-autoplay';
   import { toast } from 'vue-sonner';
   import { validateEmail } from '~/lib/validation';
+  import { getImageUrl } from '~/lib/getImageUrl';
 
   const form = reactive({ name: '', email: '', comment: '' });
   const loading = ref(false);
+  const doctors = ref([])
+
+  const getDoctors = async () => {
+    const res = await $fetch('/api/doctors');
+    if (res?.statusCode !== 200) {
+      return toast.error(res?.message);
+    }
+    doctors.value = res.data;
+    doctors.value = doctors.value.slice(0, 4);
+  }
+
+  onMounted(async () => {
+    await getDoctors();
+  })
 
   const handleSubmit = async () => {
     if (form.comment.trim() === '' || form.name.trim() === '' || form.email.trim() === '') {
@@ -84,8 +99,19 @@
       <p class="font-medium text-lg text-ui-primary max-w-2xl">
         В Equilibra представлены лучшие специалисты, которые готовы помочь вам разобраться в себе и своих чувствах.
       </p>
-      <div class="flex flex-wrap gap-5 justify-between">
-        карточки врачей
+      <div class="flex flex-wrap gap-5 justify-center mt-4 items-center">
+        <template v-for="doctor in doctors">
+          <NuxtLink :to="`/doctors/${doctor.doctors.id}`" class="flex flex-col rounded-md bg-transparent">
+            <img :src="getImageUrl(doctor.doctors.photoUrl)" class="max-h-[310px] max-w-[260px] object-contain" alt="">
+            <div class=" p-3 flex flex-col gap-3 bg-white">
+              <h2 class="font-medium text-xl text-ui-primary">{{ doctor.users.login }}</h2>
+              <p class="text-ui-primary">{{ doctor.doctors.specialization }}</p>
+              <p class="text-ui-primary">Опыт: {{ doctor.doctors.experience }} лет</p>
+              <p class="text-ui-primary">Формат работы: {{ doctor.doctors.workFormat }}</p>
+            </div>
+          </NuxtLink>
+        </template>
+
       </div>
     </UISection>
   </UISection>
