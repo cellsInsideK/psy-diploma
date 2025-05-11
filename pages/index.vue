@@ -8,7 +8,8 @@
 
   const form = reactive({ name: '', email: '', comment: '' });
   const loading = ref(false);
-  const doctors = ref([])
+  const doctors = ref([]);
+  const showMore = ref(false);
 
   const getDoctors = async () => {
     const res = await $fetch('/api/doctors');
@@ -16,7 +17,14 @@
       return toast.error(res?.message);
     }
     doctors.value = res.data;
-    doctors.value = doctors.value.slice(0, 4);
+    if (!showMore.value) {
+      doctors.value = doctors.value.slice(0, 3);
+    }
+  }
+
+  const handleMore = async () => {
+    showMore.value = true;
+    await getDoctors()
   }
 
   onMounted(async () => {
@@ -111,7 +119,9 @@
             </div>
           </NuxtLink>
         </template>
-
+      </div>
+      <div v-if="!showMore" class="flex w-ful justify-center items-center mt-4">
+        <Button @click="handleMore" class="flex bg-ui-primary cursor-pointer">Показать еще</Button>
       </div>
     </UISection>
   </UISection>
