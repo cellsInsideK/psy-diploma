@@ -12,7 +12,11 @@ export default defineEventHandler(async (event) => {
     let same = false;
 
     app.forEach((val) => {
-      if (val.date === parsedDateTime && val.time === body.time) {
+      const time = +val.time.split(':')[0] - +body.time.split(':')[0]
+      if (val.date.getTime() === parsedDateTime.getTime() && val.time === body.time) {
+        return same = true
+      }
+      else if (val.date.getTime() === parsedDateTime.getTime() && time === 0) {
         return same = true
       }
     })

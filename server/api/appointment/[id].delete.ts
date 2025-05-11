@@ -7,7 +7,10 @@ export default defineEventHandler(async (event) => {
 
   try {
     await db.delete(appointments).where(eq(appointments.id, id));
+
+    return {statusCode: 200, message: 'Запись удалена'}
   } catch (e) {
+    console.log(e)
     return {statusCode: 500, message: 'Не удалось удалить запись'}
   }
 })

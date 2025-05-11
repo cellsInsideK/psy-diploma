@@ -62,7 +62,7 @@
             <TableCell>{{ item.appointments.time }}</TableCell>
             <TableCell>{{ item.appointments.themes }}</TableCell>
             <TableCell>
-              <IconDelete @click="handleDeleteAppointment(item.id)" class="cursor-pointer ml-4" />
+              <IconDelete @click="handleDeleteAppointment(item.appointments.id)" class="cursor-pointer ml-4" />
             </TableCell>
           </TableRow>
         </TableBody>
