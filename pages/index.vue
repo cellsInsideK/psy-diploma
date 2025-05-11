@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
   import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/components/ui/accordion';
   import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel';
   import Autoplay from 'embla-carousel-autoplay';

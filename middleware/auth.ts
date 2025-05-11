@@ -11,7 +11,7 @@ export default defineNuxtRouteMiddleware((to)=> {
     return navigateTo('/');
   }
 
-  if (userStore.user?.type === 'admin' && to.path === '/profile') {
-    return navigateTo('/admin');
-  }
+  // if (userStore.user?.type === 'admin' && to.path === '/profile') {
+  //   return navigateTo('/admin');
+  // }
 })
