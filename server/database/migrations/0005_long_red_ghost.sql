@@ -1,0 +1,1 @@
+ALTER TABLE "appointments" ADD COLUMN "time" text NOT NULL;

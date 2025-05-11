@@ -45,6 +45,16 @@ export const doctors = pgTable('doctors', {
 
 export type SelectDoctors = typeof doctors.$inferSelect;
 
+export const appointments = pgTable('appointments', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('userId').references(() => users.id, { onDelete: 'cascade' }).notNull(),
+  doctorId: uuid('doctorId').references(() => doctors.id, { onDelete: 'cascade' }).notNull(),
+  date: timestamp('date_time').notNull(),
+  time: text('time').notNull(),
+  themes: text('themes').notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
+})
+
 export const feedback = pgTable('feedback', {
   id: uuid('id').primaryKey().defaultRandom(),
   name: varchar('name').notNull(),

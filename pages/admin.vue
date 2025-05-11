@@ -33,7 +33,7 @@
         <AdminDoctors />
       </TabsContent>
       <TabsContent value="app">
-        Таблица записей
+        <AdminAppointments />
       </TabsContent>
       <TabsContent value="feedback">
         <AdminFeedback />

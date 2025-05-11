@@ -1,12 +1,11 @@
 <script setup lang="ts">
-  import { reactive, ref, watch } from 'vue';
+  import { reactive, ref } from 'vue';
   import { toast } from 'vue-sonner';
   import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog';
 
   import { Button } from '../ui/button';
   import { Input } from '../ui/input';
   import { Label } from '../ui/label';
-  import type { SelectUsers } from '~/server/database/schema';
   import { validateEmail } from '~/lib/validation';
 
   const isOpen = defineModel<boolean>('isOpen');

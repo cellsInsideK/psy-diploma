@@ -43,9 +43,12 @@
     const res = await $fetch(`/api/user/${user.id}`, { method: 'PATCH', body: { dirtyPassword, ...form } });
     isFormLoading.value = false;
 
+    //@ts-ignore
     if (res.statusCode !== 200) {
+      //@ts-ignore
       return toast.error('Ошибка', { description: res.message });
     }
+    //@ts-ignore
 
     toast.success(res.message);
     emit('updated')
