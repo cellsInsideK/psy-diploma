@@ -15,6 +15,8 @@
       return toast.error('Ошибка', { description: 'Необходимо ответить на все вопросы!' })
     }
 
+    window.scrollTo(0, 0);
+
     return type.value = 'answer'
   }
 

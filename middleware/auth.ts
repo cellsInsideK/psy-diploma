@@ -1,4 +1,5 @@
 import { defineNuxtRouteMiddleware, navigateTo, useUserStore } from "#imports";
+import { toast } from "vue-sonner";
 
 export default defineNuxtRouteMiddleware((to)=> {
   const userStore = useUserStore();
@@ -8,6 +9,7 @@ export default defineNuxtRouteMiddleware((to)=> {
   }
 
   if (!userStore.isAuthenticated) {
+    toast.error('Ошибка', {description: 'Необходимо авторизироваться'})
     return navigateTo('/');
   }
 

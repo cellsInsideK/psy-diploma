@@ -1,6 +1,6 @@
 <script setup>
   import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/components/ui/accordion';
-  import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel';
+  import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel';
   import Autoplay from 'embla-carousel-autoplay';
   import { toast } from 'vue-sonner';
   import { validateEmail } from '~/lib/validation';
@@ -127,48 +127,53 @@
   </UISection>
   <UISection>
     <h2 class="font-medium text-2xl md:text-3xl text-ui-primary my-8">Отзывы</h2>
-    <Carousel class="w-full" :plugins="[Autoplay()]">
-      <CarouselContent>
-        <CarouselItem>
-          <div class="flex flex-col gap-5 border border-ui-primary rounded-md p-6">
-            <div class="flex gap-4 items-center text-base text-ui-primary">
-              <img src="/review1.png" class="size-16 rounded-full" alt="">
-              <p>Ольга, 35 лет</p>
+    <div class="w-full flex justify-center">
+      <Carousel class="relative w-[75%]">
+        <CarouselContent>
+          <CarouselItem class="w-full">
+            <div class="flex flex-col gap-5 border border-ui-primary rounded-md p-4">
+              <div class="flex gap-4 items-center text-base text-ui-primary">
+                <img src="/review1.png" class="size-16 rounded-full" alt="">
+                <p>Ольга, 35 лет</p>
+              </div>
+              <p class="text-ui-primary text-lg">
+                Сначала я сомневалась, стоит ли обращаться к психотерапевту,
+                но консультации помогли мне вернуть спокойствие и уверенность.
+                Я однозначно буду продолжать терапию в Equilibra.
+              </p>
             </div>
-            <p class="text-ui-primary text-lg">
-              Сначала я сомневалась, стоит ли обращаться к психотерапевту,
-              но консультации помогли мне вернуть спокойствие и уверенность.
-              Я однозначно буду продолжать терапию в Equilibra.
-            </p>
-          </div>
-        </CarouselItem>
-        <CarouselItem>
-          <div class="flex flex-col gap-5 border border-ui-primary rounded-md p-6">
-            <div class="flex gap-4 items-center text-base text-ui-primary">
-              <img src="/review2.png" class="size-16 rounded-full" alt="">
-              <p>Елена, 28 лет</p>
+          </CarouselItem>
+          <CarouselItem class="w-full">
+            <div class="flex flex-col gap-5 border border-ui-primary rounded-md p-4">
+              <div class="flex gap-4 items-center text-base text-ui-primary">
+                <img src="/review2.png" class="size-16 rounded-full" alt="">
+                <p>Елена, 28 лет</p>
+              </div>
+              <p class="text-ui-primary text-lg">
+                После рождения ребёнка я чувствовала усталость, тревогу и одиночество,
+                хотя всё вокруг говорили, что это "самое счастливое время". Благодаря терапии в Equilibra я научилась
+                заботиться о себе.
+              </p>
             </div>
-            <p class="text-ui-primary text-lg">
-              После рождения ребёнка я чувствовала усталость, тревогу и одиночество,
-              хотя всё вокруг говорили, что это "самое счастливое время". Благодаря терапии в Equilibra я научилась
-              заботиться о себе.
-            </p>
-          </div>
-        </CarouselItem>
-        <CarouselItem>
-          <div class="flex flex-col gap-5 border border-ui-primary rounded-md p-6">
-            <div class="flex gap-4 items-center text-base text-ui-primary">
-              <img src="/review3.png" class="size-16 rounded-full" alt="">
-              <p>Кирилл, 39 лет</p>
+          </CarouselItem>
+          <CarouselItem class="pl-5 w-full">
+            <div class="flex flex-col gap-5 border border-ui-primary rounded-md p-4">
+              <div class="flex gap-4 items-center text-base text-ui-primary">
+                <img src="/review3.png" class="size-16 rounded-full" alt="">
+                <p>Кирилл, 39 лет</p>
+              </div>
+              <p class="text-ui-primary text-lg">
+                Я долго держал всё в себе, думая, что «мужчина должен справляться сам». Но боль от утраты не проходила.
+                Терапия в Equilibra помогла мне прожить горе, и найти силы жить дальше.
+              </p>
             </div>
-            <p class="text-ui-primary text-lg">
-              Я долго держал всё в себе, думая, что «мужчина должен справляться сам». Но боль от утраты не проходила.
-              Терапия в Equilibra помогла мне прожить горе, и найти силы жить дальше.
-            </p>
-          </div>
-        </CarouselItem>
-      </CarouselContent>
-    </Carousel>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
+
   </UISection>
   <UISection>
     <h2 class="font-medium text-2xl md:text-3xl text-ui-primary my-8">Мы готовы поделиться знаниями</h2>
@@ -190,7 +195,7 @@
   </UISection>
   <UISection id="faq">
     <h2 class="font-medium text-2xl md:text-3xl text-ui-primary my-8">Ответы на ваши вопросы</h2>
-    <Accordion type="single" class="w-full" collapsible default-value="1">
+    <Accordion type="single" class="w-full" collapsible>
       <AccordionItem value="1">
         <AccordionTrigger class="border-b-2 border-ui-accent rounded-none font-medium text-xl text-ui-primary">Как
           выбрать

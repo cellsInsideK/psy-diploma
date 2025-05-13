@@ -18,5 +18,10 @@ export default <RouterConfig>{
         behavior: 'smooth',
       };
     }
+
+    return {
+      left: 0,
+      top: 0
+    }
   },
 };
